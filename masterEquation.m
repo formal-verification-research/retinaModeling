@@ -8,8 +8,8 @@ matrix=zeros(workspace);          % whole working space. Empty matrix
 [m,n] = size(matrix);       % size of working space
 center=[150,200];           % source of VEGF. center of concentration gradient
 radius=pdist([1 1;center]);
-x = 5;
-y = 5;
+x = 50;
+y = 50;
 conc_grad = gradient2d(matrix,radius,center);
 
 Tu=0;Td=0;Tl=0;Tr=0;Tuu=0;Tdd=0;Tll=0;Trr=0;Tur=0;Tul=0;Tdr=0;Tdl=0;
@@ -66,6 +66,5 @@ TmoveLeft = Tmn/(Tmn+Tur+Trr+Tdr);
 TmoveRight = Tmn/(Tmn+Tul+Tll+Tdl);
 
 Pmn = TmoveRight + TmoveLeft + TmoveUp + TmoveDown - (TmnRight + TmnLeft + TmnUp + TmnDown)
-
 
 
