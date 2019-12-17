@@ -1,0 +1,34 @@
+const int N = 50;
+const real TIME_BOUND = 10;
+
+int(0..N) growth_amount;
+
+property GrowthProbMax = Pmax(<>[T<=TIME_BOUND](growth_amount>=5));
+property GrowthTime = Xmax(S, (growth_amount>=5));
+
+process Level_1()
+{
+	do {
+	:: rate(99/100) tau;
+	:: rate(1/100) {= growth_amount = growth_amount + 1 =} tau;
+	}
+}
+
+
+process Level_2()
+{
+	do {
+	:: rate(75/100) tau;
+	:: rate(25/100) {= growth_amount = growth_amount + 1 =} tau;
+	}
+}
+
+
+process Level_3()
+{
+	do {
+	:: rate(50/100) tau;
+	:: rate(50/100) {= growth_amount = growth_amount + 1 =} tau;
+	}
+}
+
