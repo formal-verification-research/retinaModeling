@@ -41,7 +41,7 @@ while iterations < 10000:
     transitions = transition(chemo, k)
     normal_transitions = normal_transition(transitions)
     probabilities = probability(normal_transitions, probabilities)
-    m, n = movement(probabilities, memory, workspace, m, n, size)
+    m, n = movement(probabilities, memory, workspace, m, n, size,iterations)
 
     iterations += 1
 
