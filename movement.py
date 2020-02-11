@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from matplotlib import cm
 
 
-def movement(probabilities,memory,workspace,m,n,size):
+def movement(probabilities,memory,workspace,m,n,size,iterations):
     rand = random()
     rand2 = random()
 
@@ -25,7 +25,7 @@ def movement(probabilities,memory,workspace,m,n,size):
                 plt.imshow(workspace)
                 cm.get_cmap("jet")
                 plt.show()
-                exit("tip cell died upon encountering capillary")
+                exit("after " + str(iterations) + " iterations the tip cell died upon encountering capillary")
         memory.add((m, n))
 
     workspace[m][n] = 100000
