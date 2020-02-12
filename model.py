@@ -9,13 +9,13 @@ from normal_transition import normal_transition
 from probability import probability
 from movement import movement
 
-size = 200
+size = 500
 workspace = zeros((size, size))
-m = 100
-n = 10
+m = size // 2
+n = 0
 tip = 1
-source_m = 150
-source_n = 200
+source_m = size // 2
+source_n = size - 1
 k = .7
 p_r = .25
 p_l = .25
@@ -25,11 +25,11 @@ p_mn = 0
 probabilities = [p_r, p_l, p_u, p_d, p_mn]
 iterations = 0
 
-memory = set((m, n))
+memory = {(m, n)}
 locations = [[0,0], [0,1], [0,2], [0,-1], [0,-2], [-1,0], [-1,1], [-1,-1], [-2,0], [1,0], [1,1], [1,-1], [2,0]]
 # locations = [mn0,r1,rr2,l3,ll4,u5,ur6,ul7,uu8,d9,dr10,dl11,dd12]
 
-while iterations < 10000:
+while iterations < 100000:
     chemo = []
     for i in locations:
         if (m+i[0], n+i[1]) in memory:
