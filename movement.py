@@ -20,14 +20,20 @@ def movement(probabilities,memory,workspace,m,n,size,iterations):
         elif rand <= probabilities[0] + probabilities[2] + probabilities[3] + probabilities[4]:
             if m != size - 1:
                 m += 1
-        if (m, n) in memory:
-            if rand2 <= .01:
-                plt.imshow(workspace)
-                cm.get_cmap("jet")
-                plt.show()
-                exit("after " + str(iterations) + " iterations the tip cell died upon encountering capillary")
+        # if (m, n) in memory:
+        #     if rand2 <= .01:
+        #         plt.imshow(workspace)
+        #         cm.get_cmap("jet")
+        #         plt.show()
+        #         exit("after " + str(iterations) + " iterations the tip cell died upon encountering capillary")
         memory.add((m, n))
 
     workspace[m][n] = 100000
+
+    if n == size - 1:
+        plt.imshow(workspace)
+        cm.get_cmap("jet")
+        plt.show()
+        exit("after " + str(iterations) + " tip cell has reached right boundary")
 
     return m, n
