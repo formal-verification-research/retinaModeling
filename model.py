@@ -9,14 +9,14 @@ from normal_transition import normal_transition
 from probability import probability
 from movement import movement
 
-size = 500
+size = 50
 workspace = zeros((size, size))
 m = size // 2
 n = 0
 tip = 1
 source_m = size // 2
 source_n = size - 1
-k = .7
+k = .07
 p_r = .25
 p_l = .25
 p_u = .25
@@ -26,22 +26,22 @@ probabilities = [p_r, p_l, p_u, p_d, p_mn]
 iterations = 0
 
 memory = {(m, n)}
-locations = [[0,0], [0,1], [0,2], [0,-1], [0,-2], [-1,0], [-1,1], [-1,-1], [-2,0], [1,0], [1,1], [1,-1], [2,0]]
-# locations = [mn0,r1,rr2,l3,ll4,u5,ur6,ul7,uu8,d9,dr10,dl11,dd12]
+locations = [[-1.5,0],[-1,-0.5],[-1,0.5],[-0.5,-1],[-0.5,0],[-0.5,1],[0,-1.5],[0,-0.5],[0,0.5],[0,1.5],[0.5,-1],
+             [0.5,0],[0.5,1],[1,-0.5],[1,0.5],[1.5,0]]
 
-while iterations < 100000:
+while iterations < 200000:
     chemo = []
     for i in locations:
-        if (m+i[0], n+i[1]) in memory:
+        if (m + i[0], n + i[1]) in memory:
             conc = 0
         else:
-            conc = concentration(m+i[0], n+i[1], source_m, source_n)
+            conc = concentration(m + i[0], n + i[1], source_m, source_n)
         chemo.append(chemoattractant(conc, tip))
 
     transitions = transition(chemo, k)
     normal_transitions = normal_transition(transitions)
     probabilities = probability(normal_transitions, probabilities)
-    m, n = movement(probabilities, memory, workspace, m, n, size,iterations)
+    m, n = movement(probabilities, memory, workspace, m, n, size, iterations)
 
     iterations += 1
 
