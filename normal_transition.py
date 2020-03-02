@@ -6,7 +6,13 @@ def normal_transition(transition):
     stay_total = transition[4] + transition[5] + transition[6] + transition[7]
     for i in range(len(transition)):
         if i < 4:
-            normal_transition.append(transition[i]/move_total)
+            if move_total == 0:
+                normal_transition.append(0)
+            else:
+                normal_transition.append(transition[i]/move_total)
         else:
-            normal_transition.append(transition[i]/stay_total)
+            if stay_total == 0:
+                normal_transition.append(0)
+            else:
+                normal_transition.append(transition[i]/stay_total)
     return normal_transition
