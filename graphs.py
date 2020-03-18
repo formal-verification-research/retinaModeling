@@ -17,45 +17,7 @@ def concentration(m, n, m_source, n_source):
                     (math.exp(-1*((decay / diffusion_coeff) ** 0.5) * radius))      # concentration in pg / mm3
     return concentration
 
-'''
-grid = zeros((50, 50))
-A = []
-chemo = []
-for i in range(50):
-    for j in range(50):
-        grid[i][j] = concentration(i, j, 25, 49)
-        n4 = 0.4494
-        n5 = 1.2250
-        n7 = 2.2250
-
-        kf1 = 1.69
-        kf2 = kf1 * 100
-        kr1 = 0.02
-        kr2 = kr1 / 100
-        kp = 0.6667
-        Rf = 0.02
-
-        xo = 0.05
-        K = 2
-        Dp = 1.44 * (10**-4)
-
-        gamma = (2 * kr2 + kp) / (n5 * n7 * kf2)
-        theta = Rf
-
-        alpha = (kr1 * Rf) / (2 * kf1 * grid[i][j] + kr1)
-        beta = (n4 * (kp - 2 * kr1)) / (2 * kf1 * grid[i][j]+ kr1)
-        delta = n4 + beta
-
-        proportion = (-2 * alpha * delta - gamma + theta * beta + math.sqrt(
-            (2 * alpha * delta + gamma - theta * beta) ** 2 + 4 * alpha * beta * (n4 + delta) * (theta - alpha))) / \
-            (2 * beta * (n4 + delta))
-
-        #A.append(proportion)
-
-        #chemo.append(math.exp((xo * K / Dp) * (K - (K + proportion) * math.exp(-proportion / K))))
-
-    #plt.plot(A,chemo)
-    #plt.show()
+# plots the 3D graph of the concentration gradient
 '''
 fig = plt.figure()
 ax = plt.gca(projection='3d')
@@ -73,10 +35,10 @@ surf = ax.plot_surface(X, Y, Z, rstride=1, cstride=1,
                 cmap='viridis', edgecolor='none')
 ax.set_title('concentration')
 plt.show()
+'''
 
 
-
-
+# Plots the concentration and activated receptors
 '''
 for i in np.linspace(0,101,1000):
     n4 = 0.4494
@@ -114,91 +76,19 @@ plt.ylabel("activated receptor concentration pg/mm^3")
 plt.show()
 '''
 
-'''
-B = []
-for i in np.linspace(0,11,100):
-    n4 = 0.4494
-    n5 = 1.2250
-    n7 = 2.2250
 
-    kf1 = 1.69
-    kf2 = kf1 * 100
-    kr1 = 0.02
-    kr2 = kr1 / 100
-    kp = 0.6667
-    Rf = 0.02
+# Plots the activated receptors and chemoattractance
 
-    xo = 0.05
-    K = 2
-    Dp = 1.44 * (10 ** -4)
-
-    gamma = (2 * kr2 + kp) / (n5 * n7 * kf2)
-    theta = Rf
-
-    alpha = (kr1 * Rf) / (2 * kf1 * i + kr1)
-    beta = (n4 * (kp - 2 * kr1)) / (2 * kf1 * i + kr1)
-    delta = n4 + beta
-
-    proportion = (-2 * alpha * delta - gamma + theta * beta + math.sqrt(
-        (2 * alpha * delta + gamma - theta * beta) ** 2 + 4 * alpha * beta * (n4 + delta) * (theta - alpha))) / \
-                 (2 * beta * (n4 + delta))
-    B.append(proportion)
-
-start = np.arange(0, 10, 0.1).tolist()
-plt.plot(start,B)
-plt.xlabel("concentration of free vegf pg/mm^3")
-plt.ylabel("activated receptor concentration pg/mm^3")
-plt.show()
-'''
-
-'''
-C = []
-for i in np.linspace(0,3,20):
-    n4 = 0.4494
-    n5 = 1.2250
-    n7 = 2.2250
-
-    kf1 = 1.69
-    kf2 = kf1 * 100
-    kr1 = 0.02
-    kr2 = kr1 / 100
-    kp = 0.6667
-    Rf = 0.02
-
-    xo = 0.05
-    K = 2
-    Dp = 1.44 * (10 ** -4)
-
-    gamma = (2 * kr2 + kp) / (n5 * n7 * kf2)
-    theta = Rf
-
-    alpha = (kr1 * Rf) / (2 * kf1 * i + kr1)
-    beta = (n4 * (kp - 2 * kr1)) / (2 * kf1 * i + kr1)
-    delta = n4 + beta
-
-    proportion = (-2 * alpha * delta - gamma + theta * beta + math.sqrt(
-        (2 * alpha * delta + gamma - theta * beta) ** 2 + 4 * alpha * beta * (n4 + delta) * (theta - alpha))) / \
-                 (2 * beta * (n4 + delta))
-    C.append(proportion)
-
-start = np.arange(0, 2, 0.1).tolist()
-plt.plot(start,C)
-plt.xlabel("concentration of free vegf pg/mm^3")
-plt.ylabel("activated receptor concentration pg/mm^3")
-plt.show()
-'''
-
-'''
 chemo = []
 xo = 0.05
-K = 2
+K = 0.013
 Dp = 1.44 * (10**-4)
-A = np.arange(0, 0.02, 0.01).tolist()
-for i in np.arange(0, 0.02, 0.01).tolist():
+A = np.arange(0, .015, 0.01).tolist()
+for i in np.arange(0, .015, 0.01).tolist():
     chemo.append(math.exp((xo * K / Dp) * (K - (K + i) * math.exp(-i / K))))
 
 plt.plot(A,chemo)
 plt.xlabel("activated receptor concentration pg/mm^3")
 plt.ylabel("chemoattractance")
 plt.show()
-'''
+
