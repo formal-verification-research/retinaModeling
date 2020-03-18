@@ -14,7 +14,7 @@ def chemoattractant(concentration, tip):
     Rf = 0.02
 
     xo = 0.05
-    K = 2
+    K = .013
     Dp = 1.44 * (10**-4)
 
     gamma = (2 * kr2 + kp) / (n5 * n7 * kf2)
